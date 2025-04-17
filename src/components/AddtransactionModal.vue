@@ -390,8 +390,7 @@ import swal from '@/swal';
   <style scoped>
 .inputselect {
   max-width: 100% !important;
-  overflow
-  -x: hidden;
+  overflow-x: hidden;
 }
     .loader-overlay {
   position: fixed;
