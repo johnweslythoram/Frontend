@@ -353,7 +353,7 @@ import swal from '@/swal';
       },
       closeModal() {
         let modal = document.getElementById("loginModal");
-        let bootstrapModal = bootstrap.Modal.getInstance(modal);
+        let bootstrapModal = window.bootstrap.Modal.getInstance(modal);
         this.resetForm()
         bootstrapModal.hide();
       },
