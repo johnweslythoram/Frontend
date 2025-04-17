@@ -13,6 +13,11 @@
                 <div class="col-md-8 col-12">
                     <h4>{{ selectedType }}</h4>
                 </div>
+                    <div v-if="loading" class="loader-overlay">
+    <div class="spinner-border" role="status" style="width: 3rem; height: 3rem;">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    </div>
                 <div class="col-12 col-md-4 d-flex justify-content-md-end">
                     <div class="btn-group">
                         <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -127,11 +132,13 @@ import swal from '@/swal';
           Trans_Desc : '',
           selectedPerson: "",
           Trans_date : '',
-        }
+        },
+        loading : false,
       };
     },
     methods: {
       async add_person(){
+        this.loading = true
         const UserId = this.$store.getters.getUserId;
         const params ={
                         user_id: UserId,
@@ -146,6 +153,7 @@ import swal from '@/swal';
         finally{
           this.PersonAdd = false
            this.peopleList()
+           this.loading = false
         }
       },
       resetForm() {
@@ -161,6 +169,7 @@ import swal from '@/swal';
                 };
         },
         async OnAdd() {
+          this.loading = true
           const UserId = this.$store.getters.getUserId;
         if(this.selectedType==='Transacted'){
               if(this.Trans_details.Trans_debitOrCredit==='debit'){
@@ -340,6 +349,7 @@ import swal from '@/swal';
         this.resetForm()
         this.closeModal();
         emitter.emit('savings-updated')
+        this.loading = false
       },
       closeModal() {
         let modal = document.getElementById("loginModal");
@@ -380,6 +390,19 @@ import swal from '@/swal';
   <style scoped>
 .inputselect {
   max-width: 100% !important;
-  overflow-x: hidden;
+  overflow
+  -x: hidden;
+}
+    .loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3); /* Low opacity background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050; /* higher than modals etc. */
 }
 </style>
