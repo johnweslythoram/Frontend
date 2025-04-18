@@ -5,7 +5,7 @@ import App from './App.vue'
 import store from './store'
 import router from './router';
 
-import  "./././../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+// import  "./././../node_modules/bootstrap/dist/js/bootstrp.bundle.min.js"
 const app = createApp(App);
 app.use(router);
 app.use(store)
